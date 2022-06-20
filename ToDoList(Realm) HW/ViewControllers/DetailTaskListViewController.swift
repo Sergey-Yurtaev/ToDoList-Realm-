@@ -97,6 +97,10 @@ class DetailTaskListViewController: UITableViewController {
 //        showNewVC()
         showAlert()
     }
+    
+    deinit {
+        print("DetailTaskListViewController has been dealocated")
+    }
 }
 
 extension DetailTaskListViewController {

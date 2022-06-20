@@ -39,7 +39,6 @@ class StorageManager {
         write {
             taskList.tasks.setValue(true, forKey: "isComplete")
         }
-        
     }
     
     // MARK: - Task Methods

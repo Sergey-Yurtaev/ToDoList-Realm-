@@ -80,8 +80,8 @@ class TaskListViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         
-        let editAction = UIContextualAction(style: .normal, title: "Edit") { (_, _, isDone) in // isDone - для определения окончания действия над стройкой (вернуть в исходное положение)
-            self.showAlert(with: taskList) {
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (_, _, isDone) in // isDone - для определения окончания действия над стройкой (вернуть в исходное положение)
+            self?.showAlert(with: taskList) {
                 tableView.reloadRows(at: [indexPath], with: .automatic)
             }
             isDone(true) // тут заканчиваем редактирование
@@ -97,6 +97,10 @@ class TaskListViewController: UITableViewController {
         doneAction.backgroundColor = .green
         
         return UISwipeActionsConfiguration(actions: [deleteAction, editAction, doneAction])
+    }
+    
+    deinit {
+        print("TaskListViewController has been dealocated") // не выгружается
     }
 }
 // MARK: - Extensios

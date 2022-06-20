@@ -27,7 +27,6 @@ class NewTaskViewController: UIViewController {
     }
     
     @IBAction func saveButton(_ sender: Any) {
-        
         saveEndExit()
     }
     

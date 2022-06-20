@@ -17,8 +17,8 @@ class AlertController: UIAlertController {
             doneButton = "Update"
         }
         
-        let saveAction = UIAlertAction(title: doneButton, style: .default) { _ in
-            guard let newTaskList = self.textFields?.first?.text else { return }
+        let saveAction = UIAlertAction(title: doneButton, style: .default) { [weak self] _ in
+            guard let newTaskList = self?.textFields?.first?.text else { return }
             guard !newTaskList.isEmpty else { return }
             completion(newTaskList)
         }
@@ -39,11 +39,11 @@ class AlertController: UIAlertController {
             doneButton = "Update"
         }
         
-        let saveAction = UIAlertAction(title: doneButton, style: .default) { _ in
-            guard let newTask = self.textFields?.first?.text else { return }
+        let saveAction = UIAlertAction(title: doneButton, style: .default) { [weak self] _ in
+            guard let newTask = self?.textFields?.first?.text else { return }
             guard !newTask.isEmpty else { return }
             
-            if let note = self.textFields?.last?.text, !note.isEmpty {
+            if let note = self?.textFields?.last?.text, !note.isEmpty {
                 completion(newTask, note)
             } else {
                 completion(newTask, "")
@@ -62,6 +62,10 @@ class AlertController: UIAlertController {
             noteTextfield.placeholder = "Enter a note for the task"
             noteTextfield.text = task?.note
         }
+    }
+    
+    deinit {
+        print("AlertController has been dealocated")
     }
 }
 
