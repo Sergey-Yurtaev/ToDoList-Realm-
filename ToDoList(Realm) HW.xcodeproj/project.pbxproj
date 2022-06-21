@@ -59,8 +59,8 @@
 			children = (
 				4B93D09A284FB85200C10999 /* TaskListViewController.swift */,
 				4B93D09C284FB87B00C10999 /* DetailTaskListViewController.swift */,
-				4B0147C4285531F400E45C90 /* NewTaskViewController.swift */,
 				4BC7F26F28539B1900681A6F /* NewListViewController.swift */,
+				4B0147C4285531F400E45C90 /* NewTaskViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

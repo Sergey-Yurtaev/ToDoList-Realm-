@@ -8,9 +8,10 @@
 import RealmSwift
 
 class StorageManager {
+    
     static let shared = StorageManager()
     
-    let realm = try! Realm()
+    var realm = try! Realm()
     
     private init() {}
    

@@ -55,4 +55,8 @@ class NewListViewController: UIViewController {
         guard let newTaskListName = taskListTextField.text else { return }
         saveButtonOutlet.isEnabled = !newTaskListName.isEmpty ?  true : false
     }
+    
+    deinit {
+        print("NewListViewControllerr has been dealocated") 
+    }
 }
