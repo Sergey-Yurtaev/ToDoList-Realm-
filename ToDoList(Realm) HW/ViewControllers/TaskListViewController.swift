@@ -13,17 +13,17 @@ protocol NewTaskListViewControllerDelegate {
 }
 
 class TaskListViewController: UITableViewController {
-    
-    private var taskLists: Results<TaskList>! // динамическая коллекция и при добавлении данные в реальном времени будет отображаться в интерфейсе
+    // динамическая коллекция и при добавлении данные в реальном времени будет отображаться в интерфейсе
+    private var taskLists: Results<TaskList>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = editButtonItem
+        taskLists = StorageManager.shared.realm.objects(TaskList.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        taskLists = StorageManager.shared.realm.objects(TaskList.self)
         tableView.reloadData()
     }
     
@@ -78,8 +78,8 @@ class TaskListViewController: UITableViewController {
             StorageManager.shared.delete(taskList: taskList)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
-        
-        let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (_, _, isDone) in // isDone - для определения окончания действия над стройкой (вернуть в исходное положение)
+        // isDone - для определения окончания действия над стройкой (вернуть в исходное положение)
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (_, _, isDone) in
             self?.showAlert(with: taskList) {
                 tableView.reloadRows(at: [indexPath], with: .automatic)
             }
@@ -113,8 +113,8 @@ extension TaskListViewController {
 }
 
 extension TaskListViewController {
-    private func showAlert(with taskList: TaskList? = nil, completion: (() -> Void)? = nil) { // = nil для того, что бы не пределывать методы вызова, которые были ранее. если nil, то добавление. если передаем значения, то редактирование.
-        
+    // = nil для того, что бы не пределывать методы вызова, которые были ранее. если nil, то добавление. если передаем значения, то редактирование.
+    private func showAlert(with taskList: TaskList? = nil, completion: (() -> Void)? = nil) {
         let title = taskList != nil ? "Edit List" : "New List"
         
         let alert = AlertController(title: title, message: "Please insert new value", preferredStyle: .alert)
@@ -145,8 +145,6 @@ extension TaskListViewController: NewTaskListViewControllerDelegate {
         }
     }
 }
-
-
 
 /*  вносим через код занчения по умолчанию для стара. 1 раз загрузить и можно удалять (можно делать в Realm Studio)
  override func viewDidLoad() {

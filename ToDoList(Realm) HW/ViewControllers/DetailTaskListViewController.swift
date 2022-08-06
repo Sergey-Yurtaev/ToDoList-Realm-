@@ -78,10 +78,10 @@ class DetailTaskListViewController: UITableViewController {
         let doneAction = UIContextualAction(style: .normal, title: done) { (_, _, isDone) in
             StorageManager.shared.done(task: task)
             
-            let indexPathForCurrentTask = IndexPath(row: self.currentTasks.count - 1, section: 0)      // определяем индексы секций текущих задач
-            let indexPathForComplitedTask = IndexPath(row: self.completedTasks.count - 1, section: 1)      // определяем индексы секций выполненых задач
+            let indexPathForCurrentTask = IndexPath(row: self.currentTasks.count - 1, section: 0) // определяем индексы секций текущих задач
+            let indexPathForComplitedTask = IndexPath(row: self.completedTasks.count - 1, section: 1) // определяем индексы секций выполненых задач
 
-            let destanationIndexRow = indexPath.section == 0 ? indexPathForComplitedTask : indexPathForCurrentTask  // опредеяем пункт назанчения задачи (куда перемещаем)
+            let destanationIndexRow = indexPath.section == 0 ? indexPathForComplitedTask : indexPathForCurrentTask // опредеяем пункт назанчения задачи (куда перемещаем)
             
             tableView.moveRow(at: indexPath, to: destanationIndexRow)
             isDone(true)
@@ -94,7 +94,7 @@ class DetailTaskListViewController: UITableViewController {
     }
     
     @objc private func addButtonPressed() {
-//        showNewVC()
+//      showNewVC()
         showAlert()
     }
     

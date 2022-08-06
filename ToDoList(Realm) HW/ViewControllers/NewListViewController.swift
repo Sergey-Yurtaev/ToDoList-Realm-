@@ -9,11 +9,10 @@ import UIKit
 import RealmSwift
 
 class NewListViewController: UIViewController {
-
+    
     var delegate: NewTaskListViewControllerDelegate!
     
     @IBOutlet weak var taskListTextField: UITextField!
-    
     @IBOutlet weak var saveButtonOutlet: UIButton!
     
     override func viewDidLoad() {
@@ -39,7 +38,6 @@ class NewListViewController: UIViewController {
         }
         
         delegate.updateUI()
-        
         dismiss(animated: true)
     }
     
